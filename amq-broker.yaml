@@ -1,0 +1,19 @@
+apiVersion: broker.amq.io/v2alpha1
+kind: ActiveMQArtemis
+metadata:
+  name: ex-aao
+  namespace: amq-demo
+spec:
+  acceptors:
+    - name: amqp
+      needClientAuth: false
+      port: 5671
+      protocols: amqp
+      sslEnabled: true
+      sslSecret: ex-aao-amqp-secret
+      verifyHost: false
+  deploymentPlan:
+    image: 'registry.redhat.io/amq7/amq-broker:7.5'
+    messageMigration: true
+    persistenceEnabled: true
+    size: 2
